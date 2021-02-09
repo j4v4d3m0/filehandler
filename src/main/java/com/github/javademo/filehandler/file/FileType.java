@@ -6,15 +6,13 @@ import static java.util.Arrays.asList;
 import static java.util.EnumSet.of;
 import static java.util.stream.Stream.of;
 import static org.apache.commons.io.FilenameUtils.removeExtension;
-
+import static org.springframework.integration.file.FileHeaders.FILENAME;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Stream;
-
 import org.springframework.integration.file.FileNameGenerator;
 import org.springframework.messaging.Message;
-
 import com.github.javademo.filehandler.transform.Creator;
 import com.github.javademo.filehandler.transform.ImageHistogramCreator;
 import com.github.javademo.filehandler.transform.WordpairCounterFileCreator;
@@ -101,7 +99,7 @@ public enum FileType {
   }
 
   private static String getFilenameWithoutExtension(Message<?> message) {
-    return removeExtension((String) message.getHeaders().get("file_name"));
+    return removeExtension((String) message.getHeaders().get(FILENAME));
   }
 
   private static FileNameGenerator filename(String postfix) {
