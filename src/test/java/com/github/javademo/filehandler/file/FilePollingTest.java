@@ -8,10 +8,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.when;
 import static org.springframework.util.FileCopyUtils.copy;
+
 import java.io.File;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -24,8 +26,10 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.support.ChannelInterceptor;
 import org.springframework.test.annotation.DirtiesContext;
+
 import com.github.javademo.filehandler.TestUtils;
-import com.github.javademo.filehandler.transform.Creator;
+import com.github.javademo.filehandler.transform.ImageHistogramCreator;
+import com.github.javademo.filehandler.transform.WordpairCounterFileCreator;
 
 @SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
@@ -47,9 +51,9 @@ public class FilePollingTest {
   @Qualifier("inbound-text-channel")
   public DirectChannel filePollingChannel;
 
-  @MockBean
-  @Qualifier("wordpairCounterFileCreator")
-  private Creator wordpairCounterFileCreator;
+  @MockBean private WordpairCounterFileCreator wordpairCounterFileCreator;
+
+  @MockBean private ImageHistogramCreator imageHistogramCreator;
 
   @AfterEach
   public void tearDown() throws Exception {

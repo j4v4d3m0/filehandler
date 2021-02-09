@@ -6,12 +6,18 @@ import static java.util.Arrays.asList;
 import static java.util.EnumSet.of;
 import static java.util.stream.Stream.of;
 import static org.apache.commons.io.FilenameUtils.removeExtension;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Stream;
+
 import org.springframework.integration.file.FileNameGenerator;
 import org.springframework.messaging.Message;
+
+import com.github.javademo.filehandler.transform.Creator;
+import com.github.javademo.filehandler.transform.ImageHistogramCreator;
+import com.github.javademo.filehandler.transform.WordpairCounterFileCreator;
 
 public enum FileType {
   NOT_SUPPORTED,
@@ -19,8 +25,9 @@ public enum FileType {
   IMAGE(
       "image",
       asList("image/bmp", "image/jpeg", "image/jpg", "image/gif", "image/png"),
+      ImageHistogramCreator.class,
       filename("-hist.bmp")),
-  TEXT("text", asList("text/plain"), filename("-wp.txt"));
+  TEXT("text", asList("text/plain"), WordpairCounterFileCreator.class, filename("-wp.txt"));
 
   private String typename;
 
@@ -28,13 +35,23 @@ public enum FileType {
 
   private FileNameGenerator fileNameGenerator;
 
+  private Class<? extends Creator> creator;
+
   private FileType() {}
 
   private FileType(
-      String typename, List<String> contentTypes, FileNameGenerator fileNameGenerator) {
+      String typename,
+      List<String> contentTypes,
+      Class<? extends Creator> creator,
+      FileNameGenerator fileNameGenerator) {
     this.typename = typename;
     this.contentTypes = contentTypes;
+    this.creator = creator;
     this.fileNameGenerator = fileNameGenerator;
+  }
+
+  public Class<? extends Creator> getCreator() {
+    return creator;
   }
 
   public FileNameGenerator getFileNameGenerator() {
