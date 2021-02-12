@@ -1,9 +1,10 @@
 package com.github.javademo.filehandler;
 
 import java.util.Properties;
+
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.ConfigurableApplicationContext;
+
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -35,8 +36,6 @@ public class Application implements Runnable {
       defaultValue = "60")
   private int timeout;
 
-  private static ConfigurableApplicationContext ctx;
-
   public static void main(String[] args) {
     new CommandLine(new Application()).execute(args);
   }
@@ -48,15 +47,11 @@ public class Application implements Runnable {
     properties.put("wordpair.number.limit", wordpairNumberLimit);
     properties.put("timeout", timeout);
     properties.put("thread.pool.size", threadPoolSize);
-    ctx = new SpringApplicationBuilder().sources(Application.class).properties(properties).run();
+     new SpringApplicationBuilder().sources(Application.class).properties(properties).run();
   }
 
   public Application withIncomingDir(String incomingDir) {
     this.incomingDir = incomingDir;
     return this;
-  }
-
-  public static void exit() {
-    ctx.close();
   }
 }
