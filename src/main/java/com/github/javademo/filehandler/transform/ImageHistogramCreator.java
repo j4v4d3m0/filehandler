@@ -46,7 +46,7 @@ public class ImageHistogramCreator implements Creator {
       Imgproc.line(
           histImage,
           new Point(i, histImage.rows()),
-          new Point(i, histImage.rows() - round(histogram.get(i, 0)[0])),
+          new Point(i, ((double)histImage.rows()) - (double)round(histogram.get(i, 0)[0])),
           new Scalar(255, 255, 255),
           1,
           8,
