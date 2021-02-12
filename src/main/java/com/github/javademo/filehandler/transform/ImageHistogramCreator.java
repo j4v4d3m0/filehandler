@@ -30,8 +30,8 @@ public class ImageHistogramCreator implements Creator {
 
   @Override
   public Object create(File file) {
-    List<Mat> matList = new LinkedList<Mat>();
-    matList.add(Imgcodecs.imread(((File) file).getAbsolutePath()));
+    List<Mat> matList = new LinkedList<>();
+    matList.add(Imgcodecs.imread((file).getAbsolutePath()));
 
     Mat histogram = new Mat();
 

@@ -1,6 +1,7 @@
 package com.github.javademo.filehandler.transform;
 
 import static java.util.Collections.reverseOrder;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -12,8 +13,6 @@ import java.util.stream.Stream;
 public class WordpairCounterFileCreator implements Creator {
 
   private int wordpairNumberLimit;
-
-  public WordpairCounterFileCreator() {}
 
   public WordpairCounterFileCreator withWordpairNumberLimit(int wordpairNumberLimit) {
     this.wordpairNumberLimit = wordpairNumberLimit;
@@ -29,8 +28,8 @@ public class WordpairCounterFileCreator implements Creator {
     }
   }
 
-  private StringBuffer createContent(Scanner scanner) {
-    StringBuffer content = new StringBuffer();
+  private StringBuilder createContent(Scanner scanner) {
+    StringBuilder content = new StringBuilder();
     filteredSortedStream(wordpairEntryStream(scanner)).forEach(v -> addLine(content, v));
     return content;
   }
@@ -53,10 +52,7 @@ public class WordpairCounterFileCreator implements Creator {
     String word = scanner.next().toLowerCase();
     if (prevWord != null) {
       String wordpair = prevWord + " " + word;
-      Integer num = words.get(wordpair);
-      if (num == null) {
-        num = 0;
-      }
+      Integer num = words.getOrDefault(wordpair, 0);
       words.put(wordpair, ++num);
     }
     return word;
@@ -71,7 +67,7 @@ public class WordpairCounterFileCreator implements Creator {
     return stream.filter(i -> i.getValue() > wordpairNumberLimit);
   }
 
-  private void addLine(StringBuffer out, Entry<String, Integer> v) {
+  private void addLine(StringBuilder out, Entry<String, Integer> v) {
     out.append(v.getKey()).append(" : ").append(v.getValue()).append("\n");
   }
 }
