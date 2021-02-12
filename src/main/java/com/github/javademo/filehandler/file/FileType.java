@@ -1,18 +1,21 @@
 package com.github.javademo.filehandler.file;
 
 import static java.lang.String.format;
-import static java.nio.file.Files.probeContentType;
 import static java.util.Arrays.asList;
 import static java.util.EnumSet.of;
 import static java.util.stream.Stream.of;
-import static org.apache.commons.io.FilenameUtils.removeExtension;
-import static org.springframework.integration.file.FileHeaders.FILENAME;
+
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.stream.Stream;
+
+import org.apache.commons.io.FilenameUtils;
+import org.springframework.integration.file.FileHeaders;
 import org.springframework.integration.file.FileNameGenerator;
 import org.springframework.messaging.Message;
+
 import com.github.javademo.filehandler.transform.Creator;
 import com.github.javademo.filehandler.transform.ImageHistogramCreator;
 import com.github.javademo.filehandler.transform.WordpairCounterFileCreator;
@@ -35,9 +38,9 @@ public enum FileType {
 
   private Class<? extends Creator> creator;
 
-  private FileType() {}
+  FileType() {}
 
-  private FileType(
+  FileType(
       String typename,
       List<String> contentTypes,
       Class<? extends Creator> creator,
@@ -78,7 +81,7 @@ public enum FileType {
 
   public static FileType getType(File file) {
     try {
-      return getType(probeContentType(file.toPath()));
+      return getType(Files.probeContentType(file.toPath()));
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
@@ -92,14 +95,14 @@ public enum FileType {
     if (contentType == null) {
       return NOT_DEFINED;
     }
-    return Stream.of(values())
+    return of(values())
         .filter(e -> e.contentTypes != null && e.contentTypes.contains(contentType))
         .findFirst()
         .orElse(NOT_SUPPORTED);
   }
 
   private static String getFilenameWithoutExtension(Message<?> message) {
-    return removeExtension((String) message.getHeaders().get(FILENAME));
+    return FilenameUtils.removeExtension((String) message.getHeaders().get(FileHeaders.FILENAME));
   }
 
   private static FileNameGenerator filename(String postfix) {

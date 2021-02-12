@@ -2,8 +2,10 @@ package com.github.javademo.filehandler.transform;
 
 import static com.github.javademo.filehandler.TestUtils.locateClasspathResource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.io.File;
-import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.api.Test;
 
 class WordPairCounterFileCreatorTest {
@@ -19,7 +21,7 @@ class WordPairCounterFileCreatorTest {
 
   @Test
   void testCreateWhenFileNotFound() {
-    Assertions.assertThrows(
+    assertThrows(
         RuntimeException.class,
         () ->
             new WordpairCounterFileCreator()
