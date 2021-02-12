@@ -1,4 +1,5 @@
 # Filehandler
+[![Build Status](https://travis-ci.com/j4v4d3m0/filehandler.svg?branch=main)](https://travis-ci.com/j4v4d3m0/filehandler)
 ## Fordítás
 ```bash
 git clone https://github.com/j4v4d3m0/filehandler.git
