@@ -1,10 +1,2 @@
 language: java
 dist: focal
-addons:
-  sonarcloud:
-    organization: j4v4d3m0
-script:
-- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
-env:
-  global:
-    secure: a8V5WSMUSdKDWCjxeDBBlyBTCaSrqUqrjkT66VoK6PgGpi0/j22OW/iUzFxpcgmxJmp3LY5X3tE8UfLsBPwtmbWLLUl0NfDFU3uWDhbxTX/RBL/IGBnf454DYlImRCDIJJHjgaZT+udDVBTJytuLlAR1tyimk6eidp3L8ByXISeTx6ZnUTOeU/YtjKg2Fpaw+KwglTb1gJ4PsLYt4Somm9NsWa1b2wO+mx104adR4LCAC5ToQSWCkvOAKhJFYPbGPfZnHYscr20Jg1GZ69Ha9OS+zuT9HRI/7kPVnweMs05VGWpaZy1O7AkUuxy/weWLBSdOGU/wtWRfAR18YgzEYqLznE7K9Jmt7ubZLcNapF6YhCPsNu+JYqSn788LHS03r9+ckACmaO5k/9SPR6eFsB84Em9RT6qMWgC6qTekKCv+x+TmSIxwwcypbI+XZyHsya5RXIWICKF3Rg5dvtYkp6KvgrwYloA8cqAHDpUpiaA0uKUygX7oaJ95UwSUCcfZcITJNsv7bLdQ3qRt6vsIoZSFLVHNmnAq3AT2DsPvUDSE27vAjn7Ek4r70JGRwBeTZ+MW5tQiu3gTUVgsj9q60zXd0nAPH+ezOjPrsigCee2l3xLb9q9IktY2O1tYNe3aBF/EDQpX0Z/AuCCMgWsW94tcn1DQSBMu0Sm+jJGkrPM=
