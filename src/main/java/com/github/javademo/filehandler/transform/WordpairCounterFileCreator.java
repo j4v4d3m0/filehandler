@@ -1,7 +1,6 @@
 package com.github.javademo.filehandler.transform;
 
 import static java.util.Collections.reverseOrder;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -9,6 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.stream.Stream;
+import com.github.javademo.filehandler.exception.FilehandlerRuntimeException;
 
 public class WordpairCounterFileCreator implements Creator {
 
@@ -24,7 +24,7 @@ public class WordpairCounterFileCreator implements Creator {
     try (Scanner scanner = new Scanner(file).useDelimiter("\\s")) {
       return createContent(scanner).toString();
     } catch (FileNotFoundException e) {
-      throw new RuntimeException(e);
+      throw new FilehandlerRuntimeException(e);
     }
   }
 

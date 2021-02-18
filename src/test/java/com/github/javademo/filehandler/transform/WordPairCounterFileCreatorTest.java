@@ -3,10 +3,9 @@ package com.github.javademo.filehandler.transform;
 import static com.github.javademo.filehandler.TestUtils.locateClasspathResource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import java.io.File;
-
 import org.junit.jupiter.api.Test;
+import com.github.javademo.filehandler.exception.FilehandlerRuntimeException;
 
 class WordPairCounterFileCreatorTest {
   @Test
@@ -21,11 +20,10 @@ class WordPairCounterFileCreatorTest {
 
   @Test
   void testCreateWhenFileNotFound() {
-    assertThrows(
-        RuntimeException.class,
-        () ->
-            new WordpairCounterFileCreator()
-                .withWordpairNumberLimit(4)
-                .create(new File("notexists")));
+    WordpairCounterFileCreator creator =
+        new WordpairCounterFileCreator().withWordpairNumberLimit(4);
+    File file = new File("notexists");
+    
+    assertThrows(FilehandlerRuntimeException.class, () -> creator.create(file));
   }
 }

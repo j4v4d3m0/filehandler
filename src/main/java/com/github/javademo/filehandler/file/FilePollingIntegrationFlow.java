@@ -2,11 +2,9 @@ package com.github.javademo.filehandler.file;
 
 import static com.github.javademo.filehandler.file.FileType.getValidTypes;
 import static org.springframework.integration.dsl.IntegrationFlows.from;
-
 import java.io.File;
 import java.util.Arrays;
 import java.util.function.Consumer;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -49,7 +47,7 @@ class FilePollingIntegrationFlow {
                         .taskExecutor(taskExecutor)
                         .transactionSynchronizationFactory(transactionSynchronizationFactory)
                         .transactional(transactionManager())))
-        .<File, FileType>route(f -> FileType.getType((File) f), route)
+        .<File, FileType>route(FileType::getType, route)
         .get();
   }
 

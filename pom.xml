@@ -19,6 +19,9 @@
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<sonar.projectKey>j4v4d3m0_filehandler</sonar.projectKey>
+		<sonar.organization>j4v4d3m0</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 	<build>
 		<plugins>

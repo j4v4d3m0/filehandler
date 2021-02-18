@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import org.springframework.core.io.ClassPathResource;
+import com.github.javademo.filehandler.exception.FilehandlerRuntimeException;
 
 public class TestUtils {
 
@@ -17,7 +18,7 @@ public class TestUtils {
     try {
       return new ClassPathResource(resourceName).getFile();
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      throw new FilehandlerRuntimeException(e);
     }
   }
 
