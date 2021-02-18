@@ -1,5 +1,6 @@
 # Filehandler
 [![Build Status](https://travis-ci.com/j4v4d3m0/filehandler.svg?branch=main)](https://travis-ci.com/j4v4d3m0/filehandler)
+
 ![Build](https://github.com/j4v4d3m0/filehandler/workflows/Build/badge.svg)
 ## Fordítás
 ```bash
