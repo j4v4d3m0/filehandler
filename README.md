@@ -1,5 +1,5 @@
 # Filehandler
-[![Build Status](https://travis-ci.com/j4v4d3m0/filehandler.svg?branch=main)](https://travis-ci.com/j4v4d3m0/filehandler)
+[![Build Status](https://app.travis-ci.com/j4v4d3m0/filehandler.svg?branch=main)](https://app.travis-ci.com/j4v4d3m0/filehandler)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=j4v4d3m0_filehandler&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=j4v4d3m0_filehandler)
 
 ## Fordítás
